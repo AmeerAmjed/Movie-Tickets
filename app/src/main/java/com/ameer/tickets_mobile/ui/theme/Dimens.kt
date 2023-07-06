@@ -29,9 +29,13 @@ val textSize32 = 32.sp
 //endregion
 
 //region Border Size Dimensions
-val border1 = 1.sp
+val border1 = 1.dp
 
 //endregion
 
 val smallIconButton = 32.dp
+
+
+
+
 
