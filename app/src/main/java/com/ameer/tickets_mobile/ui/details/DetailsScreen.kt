@@ -29,6 +29,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.ameer.tickets_mobile.R
+import com.ameer.tickets_mobile.ui.booking.navigateToBooKingScreen
+import com.ameer.tickets_mobile.ui.composable.CustomButton
 import com.ameer.tickets_mobile.ui.composable.ImageNetwork
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical16
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical8
@@ -38,14 +42,19 @@ import com.ameer.tickets_mobile.ui.details.composable.ButtonPlay
 import com.ameer.tickets_mobile.ui.details.composable.DetailsUiState
 import com.ameer.tickets_mobile.ui.details.composable.Ratings
 import com.ameer.tickets_mobile.ui.home.composable.FilmCategories
+import com.ameer.tickets_mobile.ui.home.navigateToHomeScreen
 import com.ameer.tickets_mobile.ui.theme.largeShape
 import com.ameer.tickets_mobile.ui.theme.space32
+import com.ameer.tickets_mobile.ui.theme.space8
 import com.ameer.tickets_mobile.ui.theme.zero
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel()) {
+fun DetailsScreen(
+    navController: NavController,
+    viewModel: DetailsViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsState()
     val systemUiController = rememberSystemUiController()
     val stateLazyRowCategories = rememberLazyListState()
@@ -61,8 +70,11 @@ fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel()) {
         stateLazyRowActors = stateLazyRowActors,
         screenHeight = screenHeight,
         window = window,
-        view = view
-    )
+        view = view,
+        onClickClose = navController::navigateToHomeScreen,
+        onClickBooking = navController::navigateToBooKingScreen,
+
+        )
 }
 
 @Composable
@@ -74,7 +86,10 @@ private fun DetailsContent(
     screenHeight: Int,
     window: Window,
     view: View,
-) {
+    onClickClose: () -> Unit,
+    onClickBooking: () -> Unit,
+
+    ) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -98,7 +113,8 @@ private fun DetailsContent(
                     AppBar(
                         modifier = Modifier.align(Alignment.TopCenter),
                         time = state.duration,
-                    ) {}
+                        onClickClose = onClickClose
+                    )
 
                     ButtonPlay(
                         modifier = Modifier.align(Alignment.Center)
@@ -142,6 +158,17 @@ private fun DetailsContent(
                         text = state.descriptor,
                         textAlign = TextAlign.Justify
                     )
+
+                    Box(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                        CustomButton(
+                            modifierLabel = Modifier.padding(vertical = space8),
+                            idLabelRes = R.string.booking,
+                            idIconRes = R.drawable.ic_card,
+                            isEnabled = true,
+
+                            onClick = onClickBooking,
+                        )
+                    }
 
                 }
             }

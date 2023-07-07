@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.ameer.tickets_mobile.R
 import com.ameer.tickets_mobile.ui.booking.composable.BuyTickets
 import com.ameer.tickets_mobile.ui.booking.composable.CinemaTV
@@ -30,6 +31,7 @@ import com.ameer.tickets_mobile.ui.booking.composable.Seats
 import com.ameer.tickets_mobile.ui.booking.composable.ShowTime
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical16
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical8
+import com.ameer.tickets_mobile.ui.home.navigateToHomeScreen
 import com.ameer.tickets_mobile.ui.theme.largeShape
 import com.ameer.tickets_mobile.ui.theme.space16
 import com.ameer.tickets_mobile.ui.theme.space40
@@ -38,7 +40,10 @@ import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun BookingScreen(viewModel: BookingViewModel = hiltViewModel()) {
+fun BookingScreen(
+    navController: NavController,
+    viewModel: BookingViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsState()
     val systemUiController = rememberSystemUiController()
 
@@ -48,6 +53,7 @@ fun BookingScreen(viewModel: BookingViewModel = hiltViewModel()) {
         onClickSeat = viewModel::onClickSeat,
         onClickTime = viewModel::onChangeTimeSelected,
         onClickData = viewModel::onChangeDateSelected,
+        onClickBack = navController::navigateToHomeScreen
     )
 }
 
@@ -59,8 +65,8 @@ private fun BookingContent(
     onClickSeat: (idSeat: Int) -> Unit,
     onClickTime: (time: String) -> Unit,
     onClickData: (idData: Int) -> Unit,
-
-    ) {
+    onClickBack: () -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,7 +81,7 @@ private fun BookingContent(
                 iconColor = MaterialTheme.colorScheme.onPrimary,
                 idIconRes = R.drawable.ic_close_circle,
                 modifier = Modifier.padding(top = space40, start = space16)
-            ) {}
+            ) { onClickBack() }
             var imageUrl =
                 "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
             CinemaTV(
@@ -108,6 +114,7 @@ private fun BookingContent(
             DateShow(state.dataShow, state.dataSelected, onClickData)
             ShowTime(state.showTime, state.timeSelected, onClickTime)
             BuyTickets(state = state)
+
 
         }
 

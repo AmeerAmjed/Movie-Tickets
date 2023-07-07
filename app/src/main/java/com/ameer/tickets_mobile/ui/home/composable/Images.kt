@@ -17,13 +17,16 @@ import com.google.accompanist.pager.calculateCurrentOffsetForPage
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Images(
+    modifier: Modifier=Modifier,
     state: List<FilmUiState>,
     pagerState: PagerState,
+    onCLick: () -> Unit
+
 ) {
     HorizontalPager(
         count = state.size,
         state = pagerState,
-        modifier = Modifier
+        modifier = modifier
             .padding(zero)
             .fillMaxWidth(),
         verticalAlignment = Alignment.Top,
@@ -32,7 +35,8 @@ fun Images(
 
         ItemImageFilm(
             imageUrl = state[page].imageUrl,
-            pageOffset = calculateCurrentOffsetForPage(page)
+            pageOffset = calculateCurrentOffsetForPage(page),
+            onCLick = onCLick
         )
 
     }

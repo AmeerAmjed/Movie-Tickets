@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import com.ameer.tickets_mobile.R
 import com.ameer.tickets_mobile.ui.booking.composable.IconButtonSmall
 import com.ameer.tickets_mobile.ui.theme.space16
-import com.ameer.tickets_mobile.ui.theme.space32
+import com.ameer.tickets_mobile.ui.theme.space40
 
 @Composable
 fun AppBar(
@@ -28,7 +28,7 @@ fun AppBar(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = space32)
+            .padding(top = space40)
             .padding(horizontal = space16),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

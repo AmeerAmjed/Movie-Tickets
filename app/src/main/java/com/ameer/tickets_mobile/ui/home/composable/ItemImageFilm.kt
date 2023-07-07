@@ -1,6 +1,7 @@
 package com.ameer.tickets_mobile.ui.home.composable
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -19,6 +20,7 @@ import kotlin.math.absoluteValue
 fun ItemImageFilm(
     imageUrl: String,
     pageOffset: Float,
+    onCLick: () -> Unit
 ) {
 
     Card(
@@ -40,6 +42,9 @@ fun ItemImageFilm(
                     stop = 1f,
                     fraction = 1f - pageOffset.absoluteValue.coerceIn(0f, 1f)
                 )
+            }
+            .clickable {
+                onCLick()
             }
 
     ) {

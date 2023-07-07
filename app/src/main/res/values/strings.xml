@@ -14,5 +14,6 @@
     <string name="imdb">IMDb</string>
     <string name="rotten_tomatoes">Rotten Tomatoes</string>
     <string name="ign">IGN</string>
+    <string name="booking">Booking</string>
 
 </resources>
