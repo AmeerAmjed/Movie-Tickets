@@ -1,13 +1,10 @@
-package com.ameer.tickets_mobile.ui.home
+package com.ameer.tickets_mobile.ui.home.composable
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -18,6 +15,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.util.lerp
 import coil.compose.rememberImagePainter
+import com.ameer.tickets_mobile.ui.home.FilmUiState
 import com.ameer.tickets_mobile.ui.theme.Shapes
 import com.ameer.tickets_mobile.ui.theme.space16
 import com.ameer.tickets_mobile.ui.theme.zero

@@ -98,9 +98,8 @@ private fun DetailsContent(
                     AppBar(
                         modifier = Modifier.align(Alignment.TopCenter),
                         time = state.duration,
-                    ) {
+                    ) {}
 
-                    }
                     ButtonPlay(
                         modifier = Modifier.align(Alignment.Center)
                     )

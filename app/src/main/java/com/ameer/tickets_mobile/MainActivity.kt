@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ameer.tickets_mobile.ui.booking.BookingScreen
 import com.ameer.tickets_mobile.ui.details.DetailsScreen
+import com.ameer.tickets_mobile.ui.home.HomeScreen
 import com.ameer.tickets_mobile.ui.theme.TicketsMobileTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DetailsScreen()
+                    HomeScreen()
                 }
             }
         }

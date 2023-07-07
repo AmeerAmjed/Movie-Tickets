@@ -2,12 +2,11 @@ package com.ameer.tickets_mobile.ui.home
 
 
 import android.app.Activity
-import androidx.compose.foundation.Image
+import android.view.View
+import android.view.Window
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,30 +18,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import coil.compose.rememberImagePainter
-import com.ameer.tickets_mobile.R
-import com.ameer.tickets_mobile.ui.composable.CustomButton
-import com.ameer.tickets_mobile.ui.composable.SpacerHorizontal4
+import com.ameer.tickets_mobile.ui.composable.ImageNetwork
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical16
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
+import com.ameer.tickets_mobile.ui.composable.modifier.imageGradientBlur
 import com.ameer.tickets_mobile.ui.home.composable.DurationFilm
 import com.ameer.tickets_mobile.ui.home.composable.FilmCategories
+import com.ameer.tickets_mobile.ui.home.composable.HeaderHome
+import com.ameer.tickets_mobile.ui.home.composable.Images
 import com.ameer.tickets_mobile.ui.theme.zero
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -55,12 +47,15 @@ fun HomeScreen() {
     val pagerState = rememberPagerState(initialPage = 1)
     val systemUiController = rememberSystemUiController()
     val stateLazyRowCategories = rememberLazyListState()
-
+    val view = LocalView.current
+    val window = (view.context as Activity).window
     HomeContent(
         state = HomeUiState(),
         pagerState = pagerState,
         systemUiController = systemUiController,
-        stateLazyRowCategories = stateLazyRowCategories
+        stateLazyRowCategories = stateLazyRowCategories,
+        window = window,
+        view = view
     )
 }
 
@@ -70,9 +65,10 @@ private fun HomeContent(
     state: HomeUiState,
     pagerState: PagerState,
     systemUiController: SystemUiController,
-    stateLazyRowCategories: LazyListState
-
-    ) {
+    stateLazyRowCategories: LazyListState,
+    window: Window,
+    view: View,
+) {
 
     Box(
         modifier = Modifier
@@ -81,27 +77,13 @@ private fun HomeContent(
             .padding(zero),
     ) {
 
-
-        Image(
+        ImageNetwork(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(400.dp)
                 .padding(zero)
-                .drawWithCache {
-                    onDrawWithContent {
-                        drawContent()
-                        drawRect(
-                            Brush.verticalGradient(
-                                0.7f to Color.White.copy(alpha = 0F),
-                                1F to Color.White
-                            )
-                        )
-                    }
-                }
-                .blur(19.dp),
-            painter = rememberImagePainter(data = state.file[pagerState.currentPage].imageUrl),
-            contentScale = ContentScale.FillWidth,
-            contentDescription = null,
+                .imageGradientBlur(),
+            imageUrl = state.file[pagerState.currentPage].imageUrl
         )
 
         Column(
@@ -110,45 +92,18 @@ private fun HomeContent(
             verticalArrangement = Arrangement.Top
         ) {
             SpacerVertical32()
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                CustomButton(
-                    idLabelRes = R.string.now_showing,
-                ) {
 
-                }
-                SpacerHorizontal4()
-                CustomButton(
-                    idLabelRes = R.string.coming_soon,
-                    isFullBackground = false,
-                ) {
+            HeaderHome(
+                onClickComingSoon = {},
+                onClickNowShowing = {}
+            )
 
-                }
-            }
             SpacerVertical32()
 
-            HorizontalPager(
-                count = state.file.size,
-                state = pagerState,
-                modifier = Modifier
-                    .padding(zero)
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.Top,
-                contentPadding = PaddingValues(horizontal = 70.dp, vertical = 0.dp),
-            ) { page ->
-                val pageOffset = calculateCurrentOffsetForPage(page)
-
-                ItemImageFilm(
-                    imageUrl = state.file[page].imageUrl,
-                    pageOffset = pageOffset
-                )
-
-
-            }
+            Images(
+                state = state.file,
+                pagerState = pagerState,
+            )
 
             SpacerVertical32()
             DurationFilm(state.file[pagerState.currentPage].duration)
@@ -171,10 +126,8 @@ private fun HomeContent(
 
     }
 
-    val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
             WindowCompat.setDecorFitsSystemWindows(window, false)
             systemUiController.setStatusBarColor(color = Color.Transparent)
         }

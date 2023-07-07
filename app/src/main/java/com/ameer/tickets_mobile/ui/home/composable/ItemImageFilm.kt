@@ -1,4 +1,4 @@
-package com.ameer.tickets_mobile.ui.home
+package com.ameer.tickets_mobile.ui.home.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.offset
