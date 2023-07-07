@@ -32,6 +32,19 @@ class BookingViewModel @Inject constructor() : BaseViewModel<BookingUiState>(Boo
             }
 
             currentState.copy(seats = seatState)
+
+        }.apply { onChangeSeatSelected() }
+
+    }
+
+    private fun onChangeSeatSelected() {
+        val selectedSeatsCount = _state.value.seats
+            .flatMap { listOf(it.leftSeatState, it.rightSeatState) }
+            .count { it.state == SeatState.Selected }
+        _state.update { currentState ->
+            currentState.copy(
+                numberSeatSelected = selectedSeatsCount
+            )
         }
     }
 

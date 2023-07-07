@@ -35,6 +35,13 @@ val border1 = 1.dp
 
 val smallIconButton = 32.dp
 
+//region Shape
+val smallShape = 4.dp
+val mediumShape = 16.dp
+val largeShape = 24.dp
+
+//endregion
+
 
 
 

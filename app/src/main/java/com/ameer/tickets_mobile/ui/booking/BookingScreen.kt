@@ -1,21 +1,24 @@
 package com.ameer.tickets_mobile.ui.booking
 
 import android.app.Activity
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
@@ -23,8 +26,12 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ameer.tickets_mobile.ui.booking.composable.BuyTickets
 import com.ameer.tickets_mobile.ui.booking.composable.GroupSeat
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
+import com.ameer.tickets_mobile.ui.theme.largeShape
+import com.ameer.tickets_mobile.ui.theme.space16
+import com.ameer.tickets_mobile.ui.theme.zero
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -109,57 +116,26 @@ private fun BookingContent(
 
             items(state.seats.size) { index ->
                 GroupSeat(
-                    state = state.seats[index],
-                    onClickSeat = {
-                        Log.v("ameerxyz", "now update $it")
-
-                        onClickSeat(it)
-                    }
-
+                    state = state.seats[index], onClickSeat = onClickSeat
                 )
             }
         }
-//        Row {
-//
-//            GroupSeat(
-//                modifier = Modifier.rotate(9f),
-//                state = GroupSeatUiState(,SeatState.Available, SeatState.Available),
-//
-//                onClickSeatRight = {},
-//                onClickSeatLeft = {}
-//
-//            )
-//
-//            GroupSeat(
-//                state = GroupSeatUiState(SeatState.Taken, SeatState.Taken),
-//                modifier = Modifier,
-//                onClickSeatRight = {},
-//                onClickSeatLeft = {}
-//
-//            )
-//
-//            GroupSeat(
-//
-//                state = GroupSeatUiState(SeatState.Selected, SeatState.Selected),
-//                modifier = Modifier.rotate(-9f),
-//                onClickSeatRight = {},
-//                onClickSeatLeft = {}
-//
-//            )
-//        }
+
 
 
         Column(
             modifier = Modifier
-                .weight(0.3f)
+                .weight(0.4f)
                 .fillMaxSize()
+
+                .clip(RoundedCornerShape(largeShape, largeShape, zero, zero))
+                .background(MaterialTheme.colorScheme.onPrimary)
+                .padding(space16)
         ) {
             SpacerVertical32()
 
-            SpacerVertical32()
-            SpacerVertical32()
 
-            SpacerVertical32()
+            BuyTickets(state = state)
 
         }
 

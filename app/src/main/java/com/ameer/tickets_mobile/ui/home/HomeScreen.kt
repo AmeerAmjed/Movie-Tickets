@@ -2,7 +2,6 @@ package com.ameer.tickets_mobile.ui.home
 
 
 import android.app.Activity
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,7 +36,6 @@ import com.ameer.tickets_mobile.ui.composable.CustomButton
 import com.ameer.tickets_mobile.ui.composable.SpacerHorizontal4
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical16
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
-import com.ameer.tickets_mobile.ui.composable.SpacerVertical8
 import com.ameer.tickets_mobile.ui.home.composable.DurationFilm
 import com.ameer.tickets_mobile.ui.home.composable.FilmCategories
 import com.ameer.tickets_mobile.ui.theme.zero
@@ -119,13 +117,13 @@ private fun HomeContent(
                 horizontalArrangement = Arrangement.Center
             ) {
                 CustomButton(
-                    idStringRes = R.string.now_showing,
+                    idLabelRes = R.string.now_showing,
                 ) {
 
                 }
                 SpacerHorizontal4()
                 CustomButton(
-                    idStringRes = R.string.coming_soon,
+                    idLabelRes = R.string.coming_soon,
                     isFullBackground = false,
                 ) {
 

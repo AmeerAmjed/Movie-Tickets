@@ -10,23 +10,88 @@ import androidx.compose.ui.unit.dp
 import com.ameer.tickets_mobile.ui.base.BaseUiState
 
 data class BookingUiState(
-
+    var numberSeatSelected: Int = 4,
+    var priceSeatTicket: Double = 100.00,
     var seats: List<GroupSeatUiState> = listOf(
         GroupSeatUiState(
             GroupSeatState.Left,
-            SeatUiState(1, SeatState.Selected),
+            SeatUiState(1, SeatState.Available),
             SeatUiState(2, SeatState.Available),
-        ), GroupSeatUiState(
+        ),
+        GroupSeatUiState(
             GroupSeatState.Middle,
-            SeatUiState(3, SeatState.Taken),
-            SeatUiState(4, SeatState.Taken),
-
-            ), GroupSeatUiState(
+            SeatUiState(3, SeatState.Available),
+            SeatUiState(4, SeatState.Available),
+        ),
+        GroupSeatUiState(
             GroupSeatState.Right,
-            SeatUiState(5, SeatState.Taken),
+            SeatUiState(5, SeatState.Available),
             SeatUiState(6, SeatState.Taken),
+        ),
 
-            )
+        GroupSeatUiState(
+            GroupSeatState.Left,
+            SeatUiState(7, SeatState.Available),
+            SeatUiState(8, SeatState.Available),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Middle,
+            SeatUiState(9, SeatState.Selected),
+            SeatUiState(10, SeatState.Selected),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Right,
+            SeatUiState(11, SeatState.Available),
+            SeatUiState(12, SeatState.Available),
+        ),
+
+        GroupSeatUiState(
+            GroupSeatState.Left,
+            SeatUiState(13, SeatState.Available),
+            SeatUiState(14, SeatState.Taken),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Middle,
+            SeatUiState(15, SeatState.Selected),
+            SeatUiState(16, SeatState.Selected),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Right,
+            SeatUiState(17, SeatState.Taken),
+            SeatUiState(18, SeatState.Taken),
+        ),
+
+        GroupSeatUiState(
+            GroupSeatState.Left,
+            SeatUiState(19, SeatState.Available),
+            SeatUiState(20, SeatState.Available),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Middle,
+            SeatUiState(21, SeatState.Taken),
+            SeatUiState(22, SeatState.Taken),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Right,
+            SeatUiState(23, SeatState.Available),
+            SeatUiState(24, SeatState.Available),
+        ),
+
+        GroupSeatUiState(
+            GroupSeatState.Left,
+            SeatUiState(25, SeatState.Taken),
+            SeatUiState(26, SeatState.Taken),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Middle,
+            SeatUiState(27, SeatState.Taken),
+            SeatUiState(28, SeatState.Taken),
+        ),
+        GroupSeatUiState(
+            GroupSeatState.Right,
+            SeatUiState(29, SeatState.Available),
+            SeatUiState(30, SeatState.Available),
+        )
 
 
     )
