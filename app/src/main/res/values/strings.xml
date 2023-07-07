@@ -11,4 +11,8 @@
     <string name="taken">Taken</string>
     <string name="selected">Selected</string>
 
+    <string name="imdb">IMDb</string>
+    <string name="rotten_tomatoes">Rotten Tomatoes</string>
+    <string name="ign">IGN</string>
+
 </resources>
