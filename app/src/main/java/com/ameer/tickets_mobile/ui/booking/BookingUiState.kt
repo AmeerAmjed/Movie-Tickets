@@ -106,7 +106,21 @@ data class BookingUiState(
         "3:45",
         "7:00"
     ),
-    var timeSelected: String? = null
+    var dataShow: List<DateUiState> = listOf(
+        DateUiState(1, "1", "Thu"),
+        DateUiState(2, "11", "Sun"),
+        DateUiState(3, "17", "Mon"),
+        DateUiState(4, "1", "Thu"),
+        DateUiState(5, "11", "Sun"),
+        DateUiState(6, "17", "Mon"),
+        DateUiState(7, "1", "Thu"),
+        DateUiState(8, "11", "Sun"),
+        DateUiState(9, "17", "Mon")
+
+
+    ),
+    var timeSelected: String? = null,
+    var dataSelected: Int? = null,
 ) : BaseUiState
 
 data class GroupSeatUiState(
@@ -119,6 +133,12 @@ data class GroupSeatUiState(
 data class SeatUiState(
     val id: Int,
     var state: SeatState,
+)
+
+data class DateUiState(
+    var id: Int,
+    val day: String,
+    var week: String,
 )
 
 

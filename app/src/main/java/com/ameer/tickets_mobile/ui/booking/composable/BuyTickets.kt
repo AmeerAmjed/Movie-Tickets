@@ -13,13 +13,16 @@ import androidx.compose.ui.text.font.FontWeight
 import com.ameer.tickets_mobile.R
 import com.ameer.tickets_mobile.ui.booking.BookingUiState
 import com.ameer.tickets_mobile.ui.composable.CustomButton
+import com.ameer.tickets_mobile.ui.theme.space16
 import com.ameer.tickets_mobile.ui.theme.space8
 
 @Composable
 fun BuyTickets(
     state: BookingUiState
 ) {
-    Row {
+    Row(
+        Modifier.padding(space16)
+    ) {
         Column {
             Text(
                 (state.numberSeatSelected * state.priceSeatTicket).toString(),

@@ -64,4 +64,13 @@ class BookingViewModel @Inject constructor() : BaseViewModel<BookingUiState>(Boo
         }
 
     }
+
+    fun onChangeDateSelected(id: Int) {
+        _state.update {
+            it.copy(
+                dataSelected = id
+            )
+        }
+
+    }
 }

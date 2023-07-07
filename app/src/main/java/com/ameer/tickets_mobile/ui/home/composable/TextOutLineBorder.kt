@@ -33,7 +33,7 @@ fun TextOutLineBorder(
     val shape = MaterialTheme.shapes.large
     Text(
         text = text,
-        style = MaterialTheme.typography.labelLarge,
+        style = MaterialTheme.typography.bodyLarge,
         color = colorText,
         modifier = modifier
             .padding(space4)

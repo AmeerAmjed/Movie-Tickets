@@ -5,33 +5,30 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.ameer.tickets_mobile.ui.home.composable.TextOutLineBorder
+import com.ameer.tickets_mobile.ui.booking.DateUiState
+import com.ameer.tickets_mobile.ui.composable.ItemDataShow
 import com.ameer.tickets_mobile.ui.theme.space8
 
 
 @Composable
-fun ShowTime(
-    state: List<String>,
-    timeSelected: String?,
-    onClick: (time: String) -> Unit
+fun DateShow(
+    state: List<DateUiState>,
+    idDateSelected: Int?,
+    onClick: (idDate: Int) -> Unit
 ) {
     LazyRow(
         state = rememberLazyListState(),
-        contentPadding = PaddingValues(
-            horizontal = space8, vertical = space8
-        )
-
+        contentPadding = PaddingValues(horizontal = space8, vertical = space8)
     ) {
         items(
             state.size
-
         ) { index ->
-            TextOutLineBorder(
+            ItemDataShow(
                 state[index],
                 modifier = Modifier,
-                isActive = timeSelected == state[index],
+                isActive = idDateSelected == state[index].id,
             ) {
-                onClick(state[index])
+                onClick(state[index].id)
             }
         }
     }

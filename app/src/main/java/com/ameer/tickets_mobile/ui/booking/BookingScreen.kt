@@ -1,19 +1,11 @@
 package com.ameer.tickets_mobile.ui.booking
 
 import android.app.Activity
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -23,21 +15,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ameer.tickets_mobile.R
 import com.ameer.tickets_mobile.ui.booking.composable.BuyTickets
 import com.ameer.tickets_mobile.ui.booking.composable.CinemaTV
-import com.ameer.tickets_mobile.ui.booking.composable.GroupSeat
+import com.ameer.tickets_mobile.ui.booking.composable.DateShow
+import com.ameer.tickets_mobile.ui.booking.composable.IconButtonSmall
+import com.ameer.tickets_mobile.ui.booking.composable.InfoColorSeat
+import com.ameer.tickets_mobile.ui.booking.composable.Seats
 import com.ameer.tickets_mobile.ui.booking.composable.ShowTime
-import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
+import com.ameer.tickets_mobile.ui.composable.SpacerVertical16
+import com.ameer.tickets_mobile.ui.composable.SpacerVertical8
 import com.ameer.tickets_mobile.ui.theme.largeShape
 import com.ameer.tickets_mobile.ui.theme.space16
+import com.ameer.tickets_mobile.ui.theme.space40
 import com.ameer.tickets_mobile.ui.theme.zero
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -51,7 +46,8 @@ fun BookingScreen(viewModel: BookingViewModel = hiltViewModel()) {
         state = state,
         systemUiController = systemUiController,
         onClickSeat = viewModel::onClickSeat,
-        onClickTime = viewModel::onChangeTimeSelected
+        onClickTime = viewModel::onChangeTimeSelected,
+        onClickData = viewModel::onChangeDateSelected,
     )
 }
 
@@ -62,6 +58,7 @@ private fun BookingContent(
     systemUiController: SystemUiController,
     onClickSeat: (idSeat: Int) -> Unit,
     onClickTime: (time: String) -> Unit,
+    onClickData: (idData: Int) -> Unit,
 
     ) {
     Column(
@@ -74,60 +71,41 @@ private fun BookingContent(
                 .weight(0.7f)
                 .fillMaxSize()
         ) {
-            // Content for the first column (70% width)
+            IconButtonSmall(
+                iconColor = MaterialTheme.colorScheme.onPrimary,
+                idIconRes = R.drawable.ic_close_circle,
+                modifier = Modifier.padding(top = space40, start = space16)
+            ) {}
+            var imageUrl =
+                "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
+            CinemaTV(
+                imageUrl = imageUrl,
+                modifier = Modifier
+                    .size(350.dp, 120.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
+
+            Seats(
+                state = state.seats,
+                onClickSeat = onClickSeat
+            )
+
+            InfoColorSeat()
+            SpacerVertical16()
+
         }
-
-        var imageUrl =
-            "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
-        val shape = GenericShape { size: Size, layoutDirection: LayoutDirection ->
-            val width = size.width
-            val height = size.height
-
-
-            lineTo(height, width)
-
-            lineTo(width, height)
-            lineTo(height, height)
-
-        }
-        CinemaTV(
-            imageUrl = imageUrl,
-            modifier = Modifier
-                .size(350.dp, 120.dp)
-                .align(Alignment.CenterHorizontally)
-        )
-
-
-        LazyVerticalGrid(
-            modifier = Modifier
-                .fillMaxWidth(),
-            columns = GridCells.Fixed(3),
-            contentPadding = PaddingValues(30.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalArrangement = Arrangement.Center
-        ) {
-
-            items(state.seats.size) { index ->
-                GroupSeat(
-                    state = state.seats[index], onClickSeat = onClickSeat
-                )
-            }
-        }
-
-
 
         Column(
             modifier = Modifier
-                .weight(0.9f)
+                .weight(0.3f)
                 .fillMaxSize()
 
                 .clip(RoundedCornerShape(largeShape, largeShape, zero, zero))
                 .background(MaterialTheme.colorScheme.onPrimary)
-                .padding(space16)
+
         ) {
-            SpacerVertical32()
-
-
+            SpacerVertical8()
+            DateShow(state.dataShow, state.dataSelected, onClickData)
             ShowTime(state.showTime, state.timeSelected, onClickTime)
             BuyTickets(state = state)
 
@@ -144,20 +122,4 @@ private fun BookingContent(
     }
 
 
-}
-
-
-@Composable
-fun HorizontalGradientExample() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            drawRect(
-                brush = Brush.horizontalGradient(
-                    5f to Color.Black.copy(alpha = 0F),
-                    0.5f to Color.Black
-                ),
-                alpha = 1f
-            )
-        }
-    }
 }
