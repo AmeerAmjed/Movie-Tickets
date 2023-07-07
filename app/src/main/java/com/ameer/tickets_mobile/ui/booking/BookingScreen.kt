@@ -1,13 +1,16 @@
 package com.ameer.tickets_mobile.ui.booking
 
 import android.app.Activity
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.GenericShape
@@ -17,9 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.LayoutDirection
@@ -27,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ameer.tickets_mobile.ui.booking.composable.BuyTickets
+import com.ameer.tickets_mobile.ui.booking.composable.CinemaTV
 import com.ameer.tickets_mobile.ui.booking.composable.GroupSeat
 import com.ameer.tickets_mobile.ui.booking.composable.ShowTime
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
@@ -84,32 +90,17 @@ private fun BookingContent(
             lineTo(height, height)
 
         }
-//        Image(
-//            modifier = Modifier
-//                .size(350.dp, 120.dp)
-//                .clip(shape)
-//                .drawWithCache {
-//                    onDrawWithContent {
-//                        drawContent()
-//                        drawRect(
-//                            Brush.horizontalGradient(
-//                                0.7f to Color.White.copy(alpha = 0F),
-//                                1F to Color.White
-//                            )
-//                        )
-//                    }
-//                },
-//            painter = rememberImagePainter(data = imageUrl),
-//            contentScale = ContentScale.FillBounds,
-//            contentDescription = null,
-//
-//            )
+        CinemaTV(
+            imageUrl = imageUrl,
+            modifier = Modifier
+                .size(350.dp, 120.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
 
         LazyVerticalGrid(
             modifier = Modifier
-                .fillMaxWidth()
-//                .background(Color.Blue)
-            ,
+                .fillMaxWidth(),
             columns = GridCells.Fixed(3),
             contentPadding = PaddingValues(30.dp),
             horizontalArrangement = Arrangement.Center,
@@ -127,7 +118,7 @@ private fun BookingContent(
 
         Column(
             modifier = Modifier
-                .weight(0.4f)
+                .weight(0.9f)
                 .fillMaxSize()
 
                 .clip(RoundedCornerShape(largeShape, largeShape, zero, zero))
@@ -155,3 +146,18 @@ private fun BookingContent(
 
 }
 
+
+@Composable
+fun HorizontalGradientExample() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            drawRect(
+                brush = Brush.horizontalGradient(
+                    5f to Color.Black.copy(alpha = 0F),
+                    0.5f to Color.Black
+                ),
+                alpha = 1f
+            )
+        }
+    }
+}
