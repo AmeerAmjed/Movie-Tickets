@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ameer.tickets_mobile.ui.home.HomeScreen
+import com.ameer.tickets_mobile.ui.booking.BookingScreen
 import com.ameer.tickets_mobile.ui.theme.TicketsMobileTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen()
+                    BookingScreen()
                 }
             }
         }

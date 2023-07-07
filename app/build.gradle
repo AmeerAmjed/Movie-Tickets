@@ -50,36 +50,41 @@ android {
 
 dependencies {
 
-    implementation libs.core.ktx
-    implementation libs.lifecycle.runtime.ktx
-    implementation libs.activity.compose
-    implementation platform(libs.compose.bom)
-    implementation libs.ui
-    implementation libs.ui.graphics
-    implementation libs.ui.tooling.preview
-    implementation libs.material3
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.test.ext.junit
-    androidTestImplementation libs.espresso.core
-    androidTestImplementation platform(libs.compose.bom)
-    androidTestImplementation libs.ui.test.junit4
-    debugImplementation libs.ui.tooling
-    debugImplementation libs.ui.test.manifest
+    def retrofit = '2.9.0'
 
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.5.1'
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3'
+    implementation "androidx.compose.ui:ui-util"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
     // Hilt Dependency
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
-//    kapt( "com.google.dagger:hilt-compiler:2.44")
-    implementation "androidx.compose.ui:ui-util"
 
     // Coil Compose
     implementation "io.coil-kt:coil-compose:2.0.0"
 
-    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+    // Retrofit Dependency
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
+    // OkHttp Dependency
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11"
 
     implementation "com.google.accompanist:accompanist-pager:0.23.1"
 }

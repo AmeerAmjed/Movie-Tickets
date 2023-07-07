@@ -132,6 +132,7 @@ private fun HomeContent(
                 }
             }
             SpacerVertical32()
+
             HorizontalPager(
                 count = state.file.size,
                 state = pagerState,
@@ -150,6 +151,7 @@ private fun HomeContent(
 
 
             }
+
             SpacerVertical32()
             DurationFilm(state.file[pagerState.currentPage].duration)
             SpacerVertical16()

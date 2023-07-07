@@ -16,3 +16,7 @@ val lightPrimary = Color(0xFFFF5524)
 val lightTextColor = Color(0xFFFF5524)
 val lightBorderColor = Color(0xFFFF5524)
 val lightIconColorSecondary = Color(0xFFEBEBEB)
+
+
+
+val Transparent =  Color.Transparent
