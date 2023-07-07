@@ -20,7 +20,7 @@ fun FilmCategories(
         modifier = Modifier.fillMaxWidth(),
     ) {
         items(count = categories.size) { index ->
-            ItemFilmCategory(categories[index])
+            TextOutLineBorder(categories[index])
         }
     }
 }

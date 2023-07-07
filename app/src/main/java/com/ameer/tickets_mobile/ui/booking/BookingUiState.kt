@@ -94,7 +94,19 @@ data class BookingUiState(
         )
 
 
-    )
+    ),
+    var showTime: List<String> = listOf(
+        "10:00",
+        "12:00",
+        "2:30",
+        "4:00",
+        "6:00",
+        "8:30",
+        "1:00",
+        "3:45",
+        "7:00"
+    ),
+    var timeSelected: String? = null
 ) : BaseUiState
 
 data class GroupSeatUiState(

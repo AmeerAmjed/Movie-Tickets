@@ -28,6 +28,7 @@ import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ameer.tickets_mobile.ui.booking.composable.BuyTickets
 import com.ameer.tickets_mobile.ui.booking.composable.GroupSeat
+import com.ameer.tickets_mobile.ui.booking.composable.ShowTime
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
 import com.ameer.tickets_mobile.ui.theme.largeShape
 import com.ameer.tickets_mobile.ui.theme.space16
@@ -43,8 +44,8 @@ fun BookingScreen(viewModel: BookingViewModel = hiltViewModel()) {
     BookingContent(
         state = state,
         systemUiController = systemUiController,
-        onClickSeat = viewModel::onClickSeat
-
+        onClickSeat = viewModel::onClickSeat,
+        onClickTime = viewModel::onChangeTimeSelected
     )
 }
 
@@ -54,6 +55,7 @@ private fun BookingContent(
     state: BookingUiState,
     systemUiController: SystemUiController,
     onClickSeat: (idSeat: Int) -> Unit,
+    onClickTime: (time: String) -> Unit,
 
     ) {
     Column(
@@ -135,6 +137,7 @@ private fun BookingContent(
             SpacerVertical32()
 
 
+            ShowTime(state.showTime, state.timeSelected, onClickTime)
             BuyTickets(state = state)
 
         }

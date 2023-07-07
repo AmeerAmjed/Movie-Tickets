@@ -55,4 +55,13 @@ class BookingViewModel @Inject constructor() : BaseViewModel<BookingUiState>(Boo
             SeatState.Selected
         }
     }
+
+    fun onChangeTimeSelected(time: String) {
+        _state.update {
+            it.copy(
+                timeSelected = time
+            )
+        }
+
+    }
 }
