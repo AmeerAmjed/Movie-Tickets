@@ -18,10 +18,12 @@ fun RootNavigationGraph(
         route = Graph.ROOT
     ) {
         mainRoute(navController)
+        detailsNavigationGraph(navController)
     }
 }
 
 object Graph {
-    const val ROOT = "root_graph"
-    const val MAIN = "main_graph"
+    const val ROOT = "root"
+    const val MAIN = "main"
+    const val DETAILS = "details_graph"
 }

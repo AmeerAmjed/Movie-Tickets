@@ -1,6 +1,26 @@
-package com.octopus.socialnetwork.ui.screen.main.state
+package com.ameer.tickets_mobile.ui.main.state
+
+import com.ameer.tickets_mobile.R
+import com.ameer.tickets_mobile.ui.composable.buttom_navigation_bar.BottomNavItem
+import com.ameer.tickets_mobile.ui.navigation.MainRoute
 
 data class MainUiState(
-    val isLoggedIn: Boolean = true,
-    val isLoading: Boolean = true,
+    var itemsBottomBar: List<BottomNavItem> = listOf(
+        BottomNavItem(
+            route = MainRoute.Home,
+            idIconRes = R.drawable.ic_play,
+        ),
+        BottomNavItem(
+            route = MainRoute.Search,
+            idIconRes = R.drawable.ic_search,
+        ),
+        BottomNavItem(
+            route = MainRoute.Tickets,
+            idIconRes = R.drawable.ic_ticket,
+        ),
+        BottomNavItem(
+            route = MainRoute.Profile,
+            idIconRes = R.drawable.ic_user,
+        ),
+    )
 )

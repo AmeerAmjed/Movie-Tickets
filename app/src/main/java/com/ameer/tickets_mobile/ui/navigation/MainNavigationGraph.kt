@@ -4,8 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.ameer.tickets_mobile.ui.booking.bookingRoute
-import com.ameer.tickets_mobile.ui.details.detailsRoute
 import com.ameer.tickets_mobile.ui.home.homeRoute
 
 
@@ -16,13 +14,14 @@ fun MainNavigationGraph(navController: NavHostController, rootNavController: Nav
         startDestination = MainRoute.Home,
     ) {
         homeRoute(rootNavController)
-        detailsRoute(navController)
-        bookingRoute(navController)
+
     }
 }
 
 object MainRoute {
     const val Home = "home"
-    const val details = "details"
-    const val booking = "booking"
+    const val Search = "search"
+    const val Tickets = "tickets"
+    const val Profile = "profile"
+
 }
