@@ -8,7 +8,7 @@ data class MainUiState(
     var itemsBottomBar: List<BottomNavItem> = listOf(
         BottomNavItem(
             route = MainRoute.Home,
-            idIconRes = R.drawable.ic_play,
+            idIconRes = R.drawable.ic_films,
         ),
         BottomNavItem(
             route = MainRoute.Search,
@@ -17,6 +17,7 @@ data class MainUiState(
         BottomNavItem(
             route = MainRoute.Tickets,
             idIconRes = R.drawable.ic_ticket,
+            badge = 5,
         ),
         BottomNavItem(
             route = MainRoute.Profile,
