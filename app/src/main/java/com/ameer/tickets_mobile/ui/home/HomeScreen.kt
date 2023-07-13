@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -23,13 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import com.ameer.tickets_mobile.ui.composable.ImageNetwork
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical16
 import com.ameer.tickets_mobile.ui.composable.SpacerVertical32
 import com.ameer.tickets_mobile.ui.composable.modifier.imageGradientBlur
+import com.ameer.tickets_mobile.ui.composable.modifier.noRippleClickable
 import com.ameer.tickets_mobile.ui.details.navigateToDetailsScreen
 import com.ameer.tickets_mobile.ui.home.composable.DurationFilm
 import com.ameer.tickets_mobile.ui.home.composable.FilmCategories
@@ -82,13 +82,16 @@ private fun HomeContent(
         modifier = Modifier
             .padding(zero)
             .fillMaxWidth()
-            .padding(zero),
+            .padding(zero)
+            .noRippleClickable(
+                onClick = navController::navigateToDetailsScreen
+            ),
     ) {
 
         ImageNetwork(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp)
+                .fillMaxHeight(0.5f)
                 .padding(zero)
                 .imageGradientBlur(),
             imageUrl = state.file[pagerState.currentPage].imageUrl
@@ -104,9 +107,9 @@ private fun HomeContent(
             SpacerVertical32()
 
             Images(
+                modifier = Modifier.fillMaxHeight(0.6f),
                 state = state.file,
                 pagerState = pagerState,
-                onCLick = navController::navigateToDetailsScreen
             )
 
             SpacerVertical32()

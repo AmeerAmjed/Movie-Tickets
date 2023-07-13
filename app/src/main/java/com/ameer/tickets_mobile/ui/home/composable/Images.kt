@@ -20,8 +20,6 @@ fun Images(
     modifier: Modifier=Modifier,
     state: List<FilmUiState>,
     pagerState: PagerState,
-    onCLick: () -> Unit
-
 ) {
     HorizontalPager(
         count = state.size,
@@ -36,7 +34,6 @@ fun Images(
         ItemImageFilm(
             imageUrl = state[page].imageUrl,
             pageOffset = calculateCurrentOffsetForPage(page),
-            onCLick = onCLick
         )
 
     }
