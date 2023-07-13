@@ -22,15 +22,15 @@ fun Ratings(state: RatingUiState) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         ItemRate(
-            state = "${state.imdb}/10",
+            state = state.ign,
             idLabelRes = R.string.imdb,
         )
         ItemRate(
-            state = "${state.rottenTomatoes}%",
+            state = state.rottenTomatoes,
             idLabelRes = R.string.rotten_tomatoes,
         )
         ItemRate(
-            state = "${state.ign}/10",
+            state = state.ign,
             idLabelRes = R.string.ign,
         )
     }

@@ -6,6 +6,7 @@ import android.view.Window
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,7 +45,7 @@ import com.ameer.tickets_mobile.ui.details.composable.Ratings
 import com.ameer.tickets_mobile.ui.home.composable.FilmCategories
 import com.ameer.tickets_mobile.ui.home.navigateToHomeScreen
 import com.ameer.tickets_mobile.ui.theme.largeShape
-import com.ameer.tickets_mobile.ui.theme.space32
+import com.ameer.tickets_mobile.ui.theme.space16
 import com.ameer.tickets_mobile.ui.theme.space8
 import com.ameer.tickets_mobile.ui.theme.zero
 import com.google.accompanist.systemuicontroller.SystemUiController
@@ -127,7 +128,6 @@ private fun DetailsContent(
                     modifier = Modifier
                         .height((screenHeight / 1.7).dp)
                         .align(Alignment.BottomCenter)
-                        .fillMaxSize()
                         .clip(RoundedCornerShape(largeShape, largeShape, zero, zero))
                         .background(MaterialTheme.colorScheme.background)
 
@@ -138,7 +138,7 @@ private fun DetailsContent(
                     Text(
                         text = state.name,
                         modifier = Modifier.fillMaxWidth(),
-                        style = MaterialTheme.typography.displaySmall,
+                        style = MaterialTheme.typography.titleLarge,
                         textAlign = TextAlign.Center,
                     )
 
@@ -152,12 +152,13 @@ private fun DetailsContent(
                         actors = state.actors,
                         stateLazyRowActors = stateLazyRowActors
                     )
-                    SpacerVertical16()
                     Text(
-                        modifier = Modifier.padding(horizontal = space32),
+                        modifier = Modifier.padding(horizontal = space16),
                         text = state.descriptor,
                         textAlign = TextAlign.Justify
                     )
+
+                    SpacerVertical16()
 
                     Box(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                         CustomButton(

@@ -11,13 +11,15 @@ import coil.compose.rememberImagePainter
 @Composable
 fun ImageNetwork(
     imageUrl: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentDescription: String = "",
+    contentScale: ContentScale = ContentScale.Crop,
 ) {
     Image(
         modifier = modifier.fillMaxWidth(),
         painter = rememberImagePainter(data = imageUrl),
-        contentScale = ContentScale.Crop,
-        contentDescription = null,
+        contentScale = contentScale,
+        contentDescription = contentDescription,
     )
 
 }
