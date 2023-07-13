@@ -1,9 +1,9 @@
 package com.ameer.tickets_mobile.ui.composable.modifier
 
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -21,5 +21,7 @@ fun Modifier.imageGradientBlur(): Modifier {
         }
     }.blur(19.dp))
 }
+
+
 
 

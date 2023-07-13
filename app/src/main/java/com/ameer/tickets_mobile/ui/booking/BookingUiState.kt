@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.ameer.tickets_mobile.ui.base.BaseUiState
 
 data class BookingUiState(
-    var numberSeatSelected: Int = 4,
+    var numberSeatSelected: Int = 0,
     var priceSeatTicket: Double = 100.00,
     var seats: List<GroupSeatUiState> = listOf(
         GroupSeatUiState(
@@ -36,8 +36,8 @@ data class BookingUiState(
         ),
         GroupSeatUiState(
             GroupSeatState.Middle,
-            SeatUiState(9, SeatState.Selected),
-            SeatUiState(10, SeatState.Selected),
+            SeatUiState(9, SeatState.Available),
+            SeatUiState(10, SeatState.Available),
         ),
         GroupSeatUiState(
             GroupSeatState.Right,
@@ -52,8 +52,8 @@ data class BookingUiState(
         ),
         GroupSeatUiState(
             GroupSeatState.Middle,
-            SeatUiState(15, SeatState.Selected),
-            SeatUiState(16, SeatState.Selected),
+            SeatUiState(15, SeatState.Available),
+            SeatUiState(16, SeatState.Available),
         ),
         GroupSeatUiState(
             GroupSeatState.Right,
@@ -106,6 +106,7 @@ data class BookingUiState(
         "3:45",
         "7:00"
     ),
+    var imageUrl: String = "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg",
     var dataShow: List<DateUiState> = listOf(
         DateUiState(1, "1", "Thu"),
         DateUiState(2, "11", "Sun"),
@@ -116,19 +117,21 @@ data class BookingUiState(
         DateUiState(7, "1", "Thu"),
         DateUiState(8, "11", "Sun"),
         DateUiState(9, "17", "Mon")
-
-
     ),
     var timeSelected: String? = null,
     var dataSelected: Int? = null,
-) : BaseUiState
+
+    ) : BaseUiState {
+
+    fun isSeatSelected(): Boolean = numberSeatSelected > 0
+
+}
 
 data class GroupSeatUiState(
     var state: GroupSeatState,
     val rightSeatState: SeatUiState,
     val leftSeatState: SeatUiState,
-
-    )
+)
 
 data class SeatUiState(
     val id: Int,
